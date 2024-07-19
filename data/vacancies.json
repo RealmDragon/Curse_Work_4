@@ -1,11 +1,11 @@
 [
        {
-              "name": "Frontend developer (Strong junior+)",
-              "alternate_url": "https://hh.ru/vacancy/103712145",
-              "salary_from": 500,
+              "name": "Java-devoloper",
+              "alternate_url": "https://hh.ru/vacancy/103579871",
+              "salary_from": 0,
               "salary_to": 0,
-              "area_name": "Ташкент",
-              "requirement": "Minimum 1 year of experience with ReactJS. Proficiency in UI <highlighttext>development</highlighttext>. Ability to work with REST APIs. Knowledge of HTML...",
-              "responsibility": "Team buildings. Competitive salary."
+              "area_name": "Санкт-Петербург",
+              "requirement": "Опыт разработки на Java 17 (активное применение stream api, lambdas) и Kotlin. Spring Framework. Оracle, PostgreSQL или другие реляционные СУБД. ",
+              "responsibility": "Разработка и тестирование многопоточных высоконагруженных серверных приложений. Участие в проектировании и разработке совместно с аналитиками и архитекторами. Проработка архитектурных решений..."
        }
 ]
