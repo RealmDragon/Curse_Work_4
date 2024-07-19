@@ -14,7 +14,12 @@ class HeadHunterAPI(GetVacanciesAPI):
 
     def get_response(self, keyword, per_page):
         params = {"text": keyword, "per_page": per_page}
-        return requests.get(self.url, params=params)
+        if requests.get(self.url) == 200:
+            return requests.get(self.url, params=params)
+        else:
+            print("API вернуло не верный ответ")
+            exit()
+
 
     def get_vacancies(self, keyword, per_page):
         return self.get_response(keyword, per_page).json()["items"]
