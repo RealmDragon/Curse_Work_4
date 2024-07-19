@@ -6,10 +6,15 @@ class Vacancy:
     def __init__(self, name, alternate_url, salary_from, salary_to, area_name, requirement, responsibility):
         self.name = name
         self.alternate_url = alternate_url
-        self.salary_from: int = salary_from
-        self.salary_to: int = salary_to
+        assert isinstance(salary_from, (int, float, type(None))), "Зарплата от должена быть числом или None"
+        self.salary_from = salary_from if salary_from is not None else 0
+        assert isinstance(salary_to, (int, float, type(None))), "Зарплата до должена быть числом или None"
+        self.salary_to = salary_to if salary_to is not None else 0
+        assert isinstance(area_name, str), "Область должена быть строкой"
         self.area_name = area_name
+        assert isinstance(requirement, str), "Требования должены быть строкой"
         self.requirement = requirement
+        assert isinstance(responsibility, str), "Обязоности должены быть строкой"
         self.responsibility = responsibility
 
     def __str__(self):
