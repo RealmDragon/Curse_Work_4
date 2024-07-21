@@ -1,8 +1,8 @@
 import pytest
 
-from config import TEST_VACANCIES_PATH_JSON, TEST_VACANCIES_PATH_TXT
+from config import TEST_VACANCIES_PATH_JSON
 from src.json_saver import JSONSaver
-from src.txt_saver import TXT_Saver
+from src.vacancy import Vacancy
 
 
 @pytest.fixture
@@ -23,7 +23,3 @@ def vacancy2():
 def json_saver():
     return JSONSaver(filename=TEST_VACANCIES_PATH_JSON)
 
-
-@pytest.fixture()
-def txt_saver():
-    return TXT_Saver(filename=TEST_VACANCIES_PATH_TXT)
