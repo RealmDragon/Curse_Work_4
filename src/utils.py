@@ -1,36 +1,29 @@
+from config import VACANCIES_PATH_JSON
 from src.hh_api import HeadHunterAPI
 from src.json_saver import JSONSaver
 from src.vacancy import Vacancy
 
+def user_choice_json():
+    """ Функция для работы с пользователем, записи в json-файл """
 
-def user_choice():
-    while True:
-        keyword = input("Я курсовая работа №4 и я сегодня буду помогать вам в поиске работы пожалуста ввидете ваш запрос:\n").lower()
-        if keyword.strip():  # Проверка на пустоту
-            break
-        else:
-            print("Пожалуйста, введите корректный поисковый запрос.")
-
-    while True:
-        try:
-            per_page = int(input("Сколько профессии вы хотите видет?\n"))
-            if 1 <= per_page <= 100:  # Проверка на диапазон (пример)
-                break
-            else:
-                print("Пожалуйста, введите число от 1 до 100.")
-        except ValueError:
-            print("Пожалуйста, введите целое число.")
+    keyword = input("Давайте Приступим Ведите ваш запрос Например Python-Разрабочик:\n").lower()
+    per_page = int(input("Сколько профессии вывести?\n"))
 
     hh_api = HeadHunterAPI()
-    from_hh = hh_api.get_filter_vacancies(keyword, per_page=per_page)
-
+    vacancies = hh_api.get_vacancies(keyword, per_page)
+    vacancies = [Vacancy.from_hh_dict(vacancy) for vacancy in vacancies]
+    vacancies = sorted(vacancies, reverse=True)
 
     print("Топ выбранных вакансии с 'HeadHunter' по зарплате: \n")
-    for i in sorted(from_hh, reverse=True):
+    for i in sorted(vacancies, reverse=True):
         print(i)
 
-    json_write = JSONSaver()
-    json_write.add_vacancies(from_hh)
-    json_write.sorted_vacancy_by_salary()
-    json_write.write_data()
-    print("Данные записаны в json файл")
+    vacancies = [vacancy.to_dict() for vacancy in vacancies]
+    saver = JSONSaver(VACANCIES_PATH_JSON)
+
+    saver.write_data(vacancies)
+    saver.get_data()
+    print("Данные записаны в json-файл")
+
+
+

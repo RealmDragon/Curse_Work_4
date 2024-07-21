@@ -1,6 +1,5 @@
 
 class Vacancies:
-
     """ Класс для обработки вакансии """
 
     def __init__(self):
@@ -13,9 +12,10 @@ class Vacancies:
             if vacancy not in self.all_vacancies:  # Проверка дубликатов
                 self.all_vacancies.append(vacancy)
 
-    @property
-    def all_vacancies(self):
-        return self.all_vacancies
+    # Удаляем @property
+    # @property
+    # def all_vacancies(self):
+    #     return self.all_vacancies
 
     def to_list_dict(self):
         if self.all_vacancies:  # Проверка наличия элементов

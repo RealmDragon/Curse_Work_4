@@ -1,34 +1,32 @@
 import json
 
-from config import VACANCIES_PATH
 from src.saver import Saver
-from src.vacancy import Vacancy
-from src.vacancies import Vacancies
 
 
-class JSONSaver(Vacancies, Saver):
+class JSONSaver(Saver):
+    """ Класс для записи в json-файл """
 
-    def write_data(self):
+    def __init__(self, filename):
+        """ Конструктор класса """
 
-        try:
-            data = json.load(open(VACANCIES_PATH, encoding='utf-8'))
-        except FileNotFoundError:
-            data = []
+        super().__init__(filename)
 
-        data.append(self.to_list_dict())
-
-        with open(VACANCIES_PATH,"w",encoding='utf-8') as file:
-            json.dump(self.to_list_dict(), file, indent=7, ensure_ascii=False)
+    def write_data(self, data):
+        with open(self.filename, 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
 
     def get_data(self):
-        with open(VACANCIES_PATH, encoding="utf-8") as file:
-            data = json.load(file)
-            self.__all_vacancies = []
-            for vacancy in data:
-                self.all_vacancies.append(Vacancy.vacancies_lst(vacancy))
+        try:
+            with open(self.filename, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                return data
+        except FileNotFoundError:
+            print(f"Файл {self.filename} не найден")
+            return []
 
-    def del_data(self, data_json):
-        del data_json
-
-
-
+    def del_data(self):
+        try:
+            with open(self.filename, 'w'):
+                pass
+        except FileNotFoundError:
+            print(f"Файл {self.filename} не найден")
