@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "Curse_Work_4"
+version = "0.1.0"
+description = "Курсовая работа 4 по созданию программы для поиска вакансией на HH.ru"
+authors = [" Cyril <realmdragon2014@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.2.2"
+flake8 = "^7.1.0"
+pytest-cov = "^5.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
